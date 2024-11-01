@@ -12,7 +12,7 @@ services:
       - unifi
   # Unifi controller
   mongo:
-    image: mongo:3.6
+    image: mongo:7
     container_name: ${COMPOSE_PROJECT_NAME}_mongo
     networks:
       - unifi
