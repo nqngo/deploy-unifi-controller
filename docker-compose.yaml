@@ -3,7 +3,7 @@ name: unifi
 services:
   # Cloudflare tunnel to expose the services
   cloudflared:
-    image: cloudflare/cloudflared:2024.10.1
+    image: cloudflare/cloudflared:2024.12.2
     restart: unless-stopped
     command: tunnel run
     environment:
@@ -36,8 +36,7 @@ services:
       - cert:/unifi/cert
       - init:/unifi/init.d
       - run:/var/run/unifi
-      # Mount local folder for backups and autobackups
-      - ./backup:/unifi/data/backup
+      - backup:/unifi/data/backup
     user: unifi
     sysctls:
       net.ipv4.ip_unprivileged_port_start: 0
@@ -72,6 +71,7 @@ volumes:
   init:
   dir:
   run:
+  backup:
 
 networks:
   unifi:
